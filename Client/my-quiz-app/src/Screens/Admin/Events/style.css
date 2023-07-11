@@ -1,0 +1,11 @@
+.btn-update{
+    background: rgb(24, 153, 24);
+    width: fit-content;
+    color: white;
+}
+
+.btn-delete{
+    background: rgb(227, 119, 19);
+    width: fit-content;
+    color: white;
+}
