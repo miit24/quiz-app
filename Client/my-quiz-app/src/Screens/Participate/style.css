@@ -1,0 +1,51 @@
+.spc-container {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5% 0 0 0;
+  margin: 0;
+  width: 100%;
+}
+
+#date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  box-sizing: border-box;
+  height: 200px;
+  width: 20%;
+  border-radius: 10%;
+  border: 10px solid var(--border--);
+  box-shadow:
+    2px 2px 2px var(--font--),
+    -2px 2px 2px var(--font--),
+    -2px -2px 2px var(--font--),
+    2px -2px 2px var(--font--);
+  align-items: center;
+  background: var(--date--);
+  margin: 1% 1%;
+  margin-left: 5%;
+}
+
+#date span {
+  display: block;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+#date h3 {
+  margin-top: 3%;
+  display: block;
+  font-weight: 300;
+  font-size: 20px;
+}

@@ -27,13 +27,47 @@
     -->
   <title>QuizeeBee</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
     * {
       font-family: "Roboto", sans-serif;
+    }
+
+    :root {
+      --day--: #DDF8E8;
+      --date--: #DDF8E8;
+      --border--: #A6EDE2;
+      --font--: #324376;
+      --day--: #DDF8E8;
+      --background--: #A4D7ED;
+      --background2--: #DEC5E3;
+    }
+
+    /* $background: #A4D7ED;
+$background2: #DEC5E3;
+$day: #DDF8E8;
+$date: #DDF8E8;
+$var(--font--): #324376;
+$border: #A6EDE2; */
+
+    .body{
+      background: var(--background--);
+      /* For browsers that do not support gradients */
+      background: -webkit-linear-gradient(left, var(--background--), var(--background2--));
+      /*Safari 5.1-6*/
+      background: -o-linear-gradient(right, var(--background--), var(--background2--));
+      /*Opera 11.1-12*/
+      background: -moz-linear-gradient(right, var(--background--), var(--background2--));
+      /*Fx 3.6-15*/
+      background: linear-gradient(to right, var(--background--), var(--background2--));
+      /*Standard*/
+      color: var(--font--);
+      font-family: 'Comfortaa', cursive;
     }
   </style>
 </head>
 
-<body>
+<body class="body">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <!--

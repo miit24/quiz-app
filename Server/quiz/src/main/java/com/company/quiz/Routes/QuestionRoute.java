@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/question")
@@ -33,6 +35,17 @@ public class QuestionRoute {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Integer> delete(@PathVariable("id") int id){
         return ResponseEntity.status(200).body(questionController.delete(id));
+    }
+
+    @GetMapping("/get/random/{cid}")
+    public ResponseEntity<List<Question>> getRandomQuestion(@PathVariable("cid") int cid, @RequestParam("limit")Optional<Integer> limit){
+        try{
+            List<Question> data = questionController.getRandomQuestion(cid,limit.get());
+            return ResponseEntity.status(200).body(data);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return ResponseEntity.status(500).build();
     }
 
     @ExceptionHandler(Exception.class)

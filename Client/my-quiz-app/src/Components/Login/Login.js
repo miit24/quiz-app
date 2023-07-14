@@ -1,14 +1,6 @@
 import React, { useContext, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import {
-    FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    Button,
-} from '@chakra-ui/react'
-import { Input } from '@chakra-ui/react'
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { Store } from '../../Store'
 import axios from 'axios'
 import "./style.css"
@@ -16,10 +8,6 @@ import {
     Modal,
     ModalOverlay,
     ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
 

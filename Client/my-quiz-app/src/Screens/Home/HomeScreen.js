@@ -8,15 +8,19 @@ import Hero from '../../Components/Hero/Hero'
 
 function HomeScreen() {
 
-  const { events, setEvents } = useContext(Store)
-  const [loading, setLoading] = useState(false)
+  const { events, setEventID, setRegID } = useContext(Store)
+
+  useEffect(() => {
+    setEventID(0)
+    setRegID(0)
+  }, [])
 
   return (
     <div>
       <SideBar></SideBar>
       <div className="card-main-box">
         {
-          events.map(event=>{
+          events.map(event => {
             return <Card key={event.id} body={event} />
           })
         }

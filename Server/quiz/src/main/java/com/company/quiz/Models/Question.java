@@ -1,10 +1,7 @@
 package com.company.quiz.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Question {
@@ -16,6 +13,9 @@ public class Question {
     private String B;
     private String C;
     private String D;
+
+    @Column(name="code_snippet", columnDefinition = "LONGTEXT")
+
     private String codeSnippet;
     private String answer;
     @ManyToOne

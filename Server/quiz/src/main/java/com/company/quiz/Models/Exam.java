@@ -19,12 +19,12 @@ public class Exam {
 
     @Column(name = "right_answer")
     private int right;
-
-    @Column(name = "createdAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "createdAt")
     private Date timestamp;
     @ManyToOne
     private User user;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public int getId() {
@@ -73,6 +73,14 @@ public class Exam {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Exam(int id, int wrong, int right, Date date, User user, Category category) {

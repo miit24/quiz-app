@@ -22,6 +22,8 @@ function reducer(state, action) {
 export function StoreProvider(props) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [events, setEvents] = useState([])
+    const [regID, setRegID] = useState(0)
+    const [eventID, setEventID] = useState(0)
     const [change,setChange] = useState(false);
     const value = {
         state,
@@ -30,6 +32,10 @@ export function StoreProvider(props) {
         setEvents,
         change,
         setChange,
+        regID,
+        setRegID,
+        eventID,
+        setEventID,
     };
     
     return (

@@ -30,4 +30,8 @@ public class QuestionController {
         questionDao.deleteById(id);
         return id;
     }
+
+    public List<Question> getRandomQuestion(int cid,int limit){
+        return questionDao.findRandomQuestion(cid,limit);
+    }
 }

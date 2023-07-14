@@ -41,6 +41,12 @@ public class SecurityConfig {
                             .requestMatchers(HttpMethod.PUT,"/category/update/**")
                             .hasRole("ADMIN")
                             .requestMatchers(HttpMethod.POST,"/category/create/**")
+                            .hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.GET,"/question/all/**")
+                            .hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.POST,"/question/create")
+                            .hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.DELETE,"/question/delete/**")
                             .hasRole("ADMIN");
                 });
 

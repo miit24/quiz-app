@@ -24,27 +24,39 @@ function SideBar() {
         </div>
         <ul className="nav-list">
           <li className="nav-item">
-            <a>
+            <Link to="/home">
               <span className="nav-item__icon">
                 <ion-icon name="home-outline"></ion-icon>
               </span>
               <span className="nav-item__text">
                 Home
               </span>
-            </a>
+            </Link>
           </li>
-          <li className="nav-item">
-            <a>
-              <span className="nav-item__icon">
-                <ion-icon name="chatbox-outline"></ion-icon>
-              </span>
-              <span className="nav-item__text">
-                Messages
-              </span>
-            </a>
-          </li>
-
-          {userInfo ?<></>: <>
+          {userInfo && userInfo.name === "miit" &&
+            <li className="nav-item">
+              <Link to="/admin/home">
+                <span className="nav-item__icon">
+                  <ion-icon name="chatbox-outline"></ion-icon>
+                </span>
+                <span className="nav-item__text">
+                  Admin
+                </span>
+              </Link>
+            </li>
+          }
+          {userInfo ? <>
+            <li className="nav-item">
+              <Link to="/participate">
+                <span className="nav-item__icon">
+                  <ion-icon name="home-outline"></ion-icon>
+                </span>
+                <span className="nav-item__text">
+                  Participation
+                </span>
+              </Link>
+            </li>
+          </> : <>
             <li className="nav-item">
               <a>
                 <span className="nav-item__icon">
@@ -56,38 +68,34 @@ function SideBar() {
               </a>
             </li>
             <li className="nav-item">
-              <a>
-                <Link to="/create">
-                  <span className="nav-item__icon">
-                    <ion-icon name="people-outline"></ion-icon>
-                  </span>
-                  <span className="nav-item__text">
-                    Sign Up
-                  </span>
-                </Link>
-              </a>
-            </li> </> 
+              <Link to="/create">
+                <span className="nav-item__icon">
+                  <ion-icon name="people-outline"></ion-icon>
+                </span>
+                <span className="nav-item__text">
+                  Sign Up
+                </span>
+              </Link>
+            </li> </>
           }
 
         </ul>
         <ul className="nav-list">
           {userInfo && <> <li className="nav-item">
-            <a href="#">
-              <span className="nav-item__icon avatar">{userInfo.name[0].toUpperCase()}</span>
+            <a href='/home'>
+              <span className="nav-item__icon avatar">{userInfo.name ? userInfo.name[0].toUpperCase() : "A"}</span>
               <span className="nav-item__text">
                 {userInfo.name}
               </span>
             </a>
           </li>
             <li className="nav-item">
-              <a>
-                <span className="nav-item__icon logout">
-                  <ion-icon name="log-out-outline"></ion-icon>
-                </span>
-                <span className="nav-item__text" onClick={logoutHandler}>
-                  Logout
-                </span>
-              </a>
+              <span className="nav-item__icon logout">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span className="nav-item__text" onClick={logoutHandler}>
+                Logout
+              </span>
             </li></>
           }
         </ul>

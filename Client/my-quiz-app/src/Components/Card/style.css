@@ -5,10 +5,10 @@
     margin-top: 20px;
     max-width: 350px;
     width: 26%;
-    border: 1px solid #efefef;
+    border: 1px solid white;
     box-shadow: 0 0 14px 0 rgba(0,0,0,.04);
     position: relative;
-    background-color: #dedbd8;
+    background-color: white;
   }
   
   .photo {
