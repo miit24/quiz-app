@@ -18,6 +18,7 @@ import { Button } from '@chakra-ui/react'
 import { Store } from '../../Store'
 import { v4 as uuidv4 } from 'uuid'
 import { useNavigate } from 'react-router-dom'
+import Timer from '../Timer/Timer'
 
 function QuizModal({ event }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,7 +50,7 @@ function QuizModal({ event }) {
                     }}>
 
                         <div style={{
-                            backgroundColor:"white",
+                            backgroundColor: "white",
                             border: "10px solid LightGray",
                             borderRadius: "10px",
                             height: "85vh",

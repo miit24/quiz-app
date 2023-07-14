@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Store } from '../../Store'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { getError } from "../../Helper/util"
 import "../Quiz/style.css"
 import HtmlDisplay from '../../Helper/HtmlDisplay'
 import LoadingBox from '../../Components/LoadingBox/LoadingBox'
+import Timer from '../../Components/Timer/Timer'
+import { Button } from '@chakra-ui/react'
 let rightAns = 0;
 
 function Quiz() {
@@ -21,6 +23,29 @@ function Quiz() {
     const [score, setScore] = useState(0);
     const [result, setResult] = useState();
     const [myEvent, setMyEvent] = useState(events.find(e => e.id === eventID))
+
+    const onTimeout = async () => {
+        try {
+            setLoading(true)
+            const { data } = await axios.post(`/exam/create`, {
+                id: result.id,
+                right: rightAns,
+                wrong: questions.length - rightAns,
+                category: myEvent
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userInfo.jwtToken}`
+                }
+            })
+            setLoading(false)
+            setResult(data)
+            setShowScore(true);
+            rightAns = 0;
+        } catch (error) {
+            toast.error(getError(error))
+        }
+    }
 
     useEffect(() => {
         if (!userInfo || !userInfo.jwtToken || regID === 0 || regID !== reg_ID || event_ID != eventID) {
@@ -68,6 +93,7 @@ function Quiz() {
         callQuestionApi()
         callExamApi()
     }, [regID, eventID])
+
     /////////////////////////////////////
     // Detecting for changing tabs
     /////////////////////////////////////
@@ -103,7 +129,6 @@ function Quiz() {
             setCurrentQuestion(nextQuestion);
         } else {
             setLoading(true)
-            console.log(score)
             const { data } = await axios.post(`/exam/create`, {
                 id: result.id,
                 right: rightAns,
@@ -131,6 +156,15 @@ function Quiz() {
                         {showScore ? (
                             <div className='quiz-score-section'>
                                 You scored {score} out of {questions.length}
+                                <Link to={"/home"}>
+                                    <Button className='quiz-end-btn' style={{
+                                        marginTop: "20%",
+                                        backgroundColor: "#2f922f",
+                                        color: "white",
+                                    }}>
+                                        End Quiz
+                                    </Button>
+                                </Link>
                             </div>
                         ) : (
                             <div
@@ -152,6 +186,9 @@ function Quiz() {
                                     </div>
                                 </div>
                                 <div className='quiz-answer-section'>
+
+                                    <Timer duration={myEvent.minutes * 60} onTimeout={onTimeout} />
+
                                     <button className="quiz-btn" onClick={() => handleAnswerOptionClick(questions[currentQuestion].a)}>{questions[currentQuestion].a}</button>
 
                                     <button className="quiz-btn" onClick={() => handleAnswerOptionClick(questions[currentQuestion].b)}>{questions[currentQuestion].b}</button>
@@ -160,6 +197,7 @@ function Quiz() {
 
                                     <button className="quiz-btn" onClick={() => handleAnswerOptionClick(questions[currentQuestion].d)}>{questions[currentQuestion].d}</button>
                                 </div>
+
                             </div>
                         )}
                     </div> : <>QUIZ NOT UPDATED</>
